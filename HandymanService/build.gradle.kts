@@ -24,6 +24,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	compileOnly("org.projectlombok:lombok")
+	implementation("io.micrometer:micrometer-registry-prometheus:1.10.4")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.testcontainers:junit-jupiter")
@@ -37,4 +38,8 @@ dependencyManagement {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+springBoot {
+	buildInfo()
 }
