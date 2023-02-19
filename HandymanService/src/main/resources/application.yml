@@ -1,0 +1,12 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, prometheus
+      base-path:
+      path-mapping:
+        info: /actuator/info
+        prometheus: /metrics
+
+server:
+  port: 80
