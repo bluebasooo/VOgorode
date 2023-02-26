@@ -19,6 +19,11 @@ public class StatusServiceImpl extends StatusServiceGrpc.StatusServiceImplBase {
     @Autowired
     private HandymanController handymanController;
 
+    /**
+     * Method which requests version from server
+     * @param request
+     * @param responseObserver
+     */
     @Override
     public void getVersion(Empty request, StreamObserver<VersionResponse> responseObserver) {
         VersionResponse response = VersionResponse.newBuilder()
@@ -32,6 +37,11 @@ public class StatusServiceImpl extends StatusServiceGrpc.StatusServiceImplBase {
         responseObserver.onCompleted();
     }
 
+    /**
+     * Method which requests status from server
+     * @param request
+     * @param responseObserver
+     */
     @Override
     public void getReadiness(Empty request, StreamObserver<ReadinessResponse> responseObserver) {
         String currentStatus = handymanController.getStatus().toString();

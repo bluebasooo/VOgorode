@@ -1,4 +1,4 @@
-package ru.tinkoff.rancher.server;
+package ru.tinkoff.handyman.service;
 
 import io.grpc.ManagedChannel;
 import org.springframework.http.HttpStatus;
@@ -11,11 +11,17 @@ import java.util.Map;
 public class SystemService {
     ManagedChannel channel;
 
+    /**
+     * @return status of server
+     */
     public ResponseEntity getStatus() {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    /**
+     * @return name and status of server
+     */
     public Map.Entry<String,String> getServerStatus() {
-        return Map.entry("Rancher", channel.getState(true).toString());
+        return Map.entry("HandymanService", channel.getState(true).toString());
     }
 }

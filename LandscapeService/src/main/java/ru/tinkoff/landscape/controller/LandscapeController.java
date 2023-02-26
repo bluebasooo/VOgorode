@@ -36,6 +36,10 @@ public class LandscapeController {
         return systemService.getServerStatus();
     }
 
+    /**
+     * Method send requests to other services and get information about that
+     * @return information about gRPC servers
+     */
     @GetMapping("/connections")
     public Map<String, List<ServerDto>> getConnections() {
         return statusService.getConnections();

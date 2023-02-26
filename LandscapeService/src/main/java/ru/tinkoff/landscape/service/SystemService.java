@@ -11,11 +11,17 @@ import java.util.Map;
 public class SystemService {
     ManagedChannel channel;
 
+    /**
+     * @return status of server
+     */
     public ResponseEntity getStatus() {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    /**
+     * @return name and status of server
+     */
     public Map.Entry<String,String> getServerStatus() {
-        return Map.entry("Landscape", "OK");
+        return Map.entry("LandscapeService", "OK");
     }
 }
