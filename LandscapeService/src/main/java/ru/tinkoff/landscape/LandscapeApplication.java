@@ -1,13 +1,13 @@
-package ru.tinkoff.HandymanService;
+package ru.tinkoff.landscape;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HandymanService {
+public class LandscapeApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HandymanService.class, args);
+		SpringApplication.run(LandscapeApplication.class, args);
 	}
 
 }

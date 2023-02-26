@@ -1,13 +1,13 @@
-package ru.tinkoff.RancherService;
+package ru.tinkoff.handyman;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RancherService {
+public class HandymanApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RancherService.class, args);
+		SpringApplication.run(HandymanApplication.class, args);
 	}
-}
 
+}
