@@ -12,11 +12,17 @@ import java.util.Map;
 @RequestMapping("/system")
 public class HandymanController {
 
+    /**
+     * @return status of server
+     */
     @GetMapping("/liveness")
     public ResponseEntity getStatus() {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    /**
+     * @return status and name of service
+     */
     @GetMapping("/readiness")
     public Map<String,HttpStatus> getServerStatus() {
         return Map.of("HandymanService", HttpStatus.OK);
