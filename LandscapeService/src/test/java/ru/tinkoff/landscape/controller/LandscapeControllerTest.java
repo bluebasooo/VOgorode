@@ -1,4 +1,4 @@
-package ru.tinkoff.LandscapeService.controller;
+package ru.tinkoff.landscape.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

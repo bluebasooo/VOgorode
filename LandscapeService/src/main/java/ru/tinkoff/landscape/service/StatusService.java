@@ -1,11 +1,11 @@
-package ru.tinkoff.LandscapeService.service;
+package ru.tinkoff.landscape.service;
 
 import com.google.protobuf.Empty;
 import io.grpc.ManagedChannelBuilder;
 import lombok.AllArgsConstructor;
 import net.devh.boot.grpc.client.config.GrpcChannelsProperties;
 import org.springframework.stereotype.Service;
-import ru.tinkoff.LandscapeService.dto.ServerDto;
+import ru.tinkoff.landscape.dto.ServerDto;
 import ru.tinkoff.proto.ReadinessResponse;
 import ru.tinkoff.proto.StatusServiceGrpc;
 import ru.tinkoff.proto.VersionResponse;

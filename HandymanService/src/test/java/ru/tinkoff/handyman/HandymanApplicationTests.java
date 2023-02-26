@@ -1,4 +1,4 @@
-package ru.tinkoff.HandymanService;
+package ru.tinkoff.handyman;
 
 class HandymanServiceTests {
 

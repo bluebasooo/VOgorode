@@ -1,5 +1,5 @@
-package ru.tinkoff.RancherService;
+package ru.tinkoff.rancher;
 
-class RancherServiceTests {
+class RancherApplicationTests {
 
 }

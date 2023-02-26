@@ -1,4 +1,4 @@
-package ru.tinkoff.RancherService.controller;
+package ru.tinkoff.rancher.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

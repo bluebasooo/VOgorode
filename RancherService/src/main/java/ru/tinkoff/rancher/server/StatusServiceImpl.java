@@ -1,11 +1,11 @@
-package ru.tinkoff.HandymanService.server;
+package ru.tinkoff.rancher.server;
 
 import com.google.protobuf.Empty;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.info.BuildProperties;
-import ru.tinkoff.HandymanService.controller.HandymanController;
+import ru.tinkoff.rancher.controller.RancherController;
 import ru.tinkoff.proto.ReadinessResponse;
 import ru.tinkoff.proto.StatusServiceGrpc;
 import ru.tinkoff.proto.VersionResponse;
@@ -17,7 +17,7 @@ public class StatusServiceImpl extends StatusServiceGrpc.StatusServiceImplBase {
     private BuildProperties properties;
 
     @Autowired
-    private HandymanController handymanController;
+    private RancherController rancherController;
 
     @Override
     public void getVersion(Empty request, StreamObserver<VersionResponse> responseObserver) {
@@ -33,8 +33,8 @@ public class StatusServiceImpl extends StatusServiceGrpc.StatusServiceImplBase {
     }
 
     @Override
-    public void getReadiness(Empty request, StreamObserver<ReadinessResponse> responseObserver) {
-        String currentStatus = handymanController.getStatus().toString();
+    public void getReadiness(Empty request,StreamObserver<ReadinessResponse> responseObserver) {
+        String currentStatus = rancherController.getStatus().toString();
 
         ReadinessResponse response = ReadinessResponse.newBuilder()
                 .setStatus(currentStatus)

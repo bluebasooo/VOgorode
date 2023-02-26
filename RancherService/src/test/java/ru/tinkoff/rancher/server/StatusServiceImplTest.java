@@ -1,4 +1,4 @@
-package ru.tinkoff.HandymanService.server;
+package ru.tinkoff.rancher.server;
 
 import com.google.protobuf.Empty;
 import net.devh.boot.grpc.client.inject.GrpcClient;

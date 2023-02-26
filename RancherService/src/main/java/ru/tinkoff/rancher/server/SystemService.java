@@ -1,4 +1,4 @@
-package ru.tinkoff.RancherService.server;
+package ru.tinkoff.rancher.server;
 
 import io.grpc.ManagedChannel;
 import org.springframework.http.HttpStatus;

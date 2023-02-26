@@ -1,4 +1,4 @@
-package ru.tinkoff.HandymanService.server;
+package ru.tinkoff.landscape.service;
 
 import io.grpc.ManagedChannel;
 import org.springframework.http.HttpStatus;
@@ -16,6 +16,6 @@ public class SystemService {
     }
 
     public Map.Entry<String,String> getServerStatus() {
-        return Map.entry("Handyman", channel.getState(true).toString());
+        return Map.entry("Landscape", "OK");
     }
 }

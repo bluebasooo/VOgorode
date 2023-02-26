@@ -1,4 +1,4 @@
-package ru.tinkoff.HandymanService.controller;
+package ru.tinkoff.handyman.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

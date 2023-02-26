@@ -1,4 +1,4 @@
-package ru.tinkoff.LandscapeService.dto;
+package ru.tinkoff.landscape.dto;
 
 import lombok.Builder;
 import lombok.Data;

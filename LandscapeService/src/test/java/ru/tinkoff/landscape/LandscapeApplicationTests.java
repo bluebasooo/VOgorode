@@ -1,5 +1,5 @@
-package ru.tinkoff.LandscapeService;
+package ru.tinkoff.landscape;
 
-class LandscapeServiceTests {
+class LandscapeApplicationTests {
 
 }
