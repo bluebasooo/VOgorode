@@ -21,4 +21,5 @@ public class RancherController {
     public Map<String,HttpStatus> getServerStatus() {
         return Map.of("Rancher", HttpStatus.OK);
     }
+
 }

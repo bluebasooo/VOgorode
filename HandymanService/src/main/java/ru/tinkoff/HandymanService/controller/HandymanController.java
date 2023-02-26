@@ -21,4 +21,5 @@ public class HandymanController {
     public Map<String,HttpStatus> getServerStatus() {
         return Map.of("Handyman", HttpStatus.OK);
     }
+
 }

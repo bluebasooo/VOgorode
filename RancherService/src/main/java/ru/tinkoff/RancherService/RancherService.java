@@ -9,5 +9,5 @@ public class RancherService {
 	public static void main(String[] args) {
 		SpringApplication.run(RancherService.class, args);
 	}
-
 }
+
