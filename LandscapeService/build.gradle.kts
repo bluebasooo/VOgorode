@@ -1,4 +1,4 @@
-import com.google.protobuf.gradle.*
+import com.google.protobuf.gradle.id
 
 plugins {
 	java
@@ -31,16 +31,15 @@ dependencies {
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.testcontainers:junit-jupiter")
-	//implementation("org.springframework.boot:spring-boot-configuration-processor:3.0.2")
 	implementation("org.springframework.boot:spring-boot-starter")
 
-	//implementation("io.grpc:grpc-all:1.53.0")
 	implementation("com.google.protobuf:protobuf-java:3.22.0")
 	runtimeOnly("com.google.protobuf:protobuf-java-util:3.22.0")
 	implementation("io.grpc:grpc-netty:1.53.0")
 	implementation("io.grpc:grpc-protobuf:1.53.0")
 	implementation("io.grpc:grpc-stub:1.53.0")
 	implementation("net.devh:grpc-client-spring-boot-starter:2.14.0.RELEASE")
+	testImplementation("org.mockito:mockito-all")
 	if (JavaVersion.current().isJava9Compatible()) {
 		implementation("javax.annotation:javax.annotation-api:1.3.2")
 	}

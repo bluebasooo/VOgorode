@@ -1,13 +1,13 @@
 package ru.tinkoff.LandscapeService.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.tinkoff.LandscapeService.dto.ServerDto;
 import ru.tinkoff.LandscapeService.service.StatusService;
+import ru.tinkoff.LandscapeService.service.SystemService;
 
 import java.util.List;
 import java.util.Map;
@@ -18,15 +18,16 @@ import java.util.Map;
 public class LandscapeController {
 
     private StatusService statusService;
+    private SystemService systemService;
 
     @GetMapping("/liveness")
     public ResponseEntity getStatus() {
-        return new ResponseEntity(HttpStatus.OK);
+        return systemService.getStatus();
     }
 
     @GetMapping("/readiness")
-    public Map<String,HttpStatus> getServerStatus() {
-        return Map.of("Landscape", HttpStatus.OK);
+    public Map.Entry<String,String> getServerStatus() {
+        return systemService.getServerStatus();
     }
 
     @GetMapping("/connections")
