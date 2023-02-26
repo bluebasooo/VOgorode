@@ -1,4 +1,4 @@
-package ru.tinkoff.LandscapeService;
+package ru.tinkoff.landscape;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class LandscapeServiceTests {
+class LandscapeApplicationTests {
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -39,7 +39,7 @@ class LandscapeServiceTests {
 
 		//THEN
 		result.andExpect(status().isOk())
-				.andExpect(MockMvcResultMatchers.jsonPath("Landscape").value("OK"));
+				.andExpect(MockMvcResultMatchers.jsonPath("LandscapeService").value("OK"));
 
 	}
 

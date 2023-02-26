@@ -1,4 +1,4 @@
-package ru.tinkoff.HandymanService;
+package ru.tinkoff.rancher;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +10,9 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
 @SpringBootTest
 @AutoConfigureMockMvc
-class HandymanServiceTests {
+class RancherApplicationTests {
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -40,7 +39,7 @@ class HandymanServiceTests {
 
 		//THEN
 		result.andExpect(status().isOk())
-			  .andExpect(MockMvcResultMatchers.jsonPath("Handyman").value("OK"));
+				.andExpect(MockMvcResultMatchers.jsonPath("RancherService").value("OK"));
 
 	}
 

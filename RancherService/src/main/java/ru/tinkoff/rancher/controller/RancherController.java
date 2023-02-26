@@ -1,4 +1,4 @@
-package ru.tinkoff.HandymanService.controller;
+package ru.tinkoff.rancher.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +10,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/system")
-public class HandymanController {
+public class RancherController {
 
     @GetMapping("/liveness")
     public ResponseEntity getStatus() {
@@ -19,6 +19,6 @@ public class HandymanController {
 
     @GetMapping("/readiness")
     public Map<String,HttpStatus> getServerStatus() {
-        return Map.of("Handyman", HttpStatus.OK);
+        return Map.of("RancherService", HttpStatus.OK);
     }
 }
