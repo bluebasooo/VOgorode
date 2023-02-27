@@ -41,7 +41,7 @@ class LandscapeControllerTest {
 
         //THEN
         result.andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("Landscape").value("OK"));
+                .andExpect(MockMvcResultMatchers.jsonPath("LandscapeService").value("OK"));
 
     }
 

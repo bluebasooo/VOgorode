@@ -9,7 +9,6 @@ import java.util.Map;
 
 @Service
 public class SystemService {
-    ManagedChannel channel;
 
     /**
      * @return status of server
