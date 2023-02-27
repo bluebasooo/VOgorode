@@ -39,7 +39,7 @@ class RancherControllerTest {
 
         //THEN
         result.andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("Rancher").value("OK"));
+                .andExpect(MockMvcResultMatchers.jsonPath("RancherService").value("IDLE"));
 
     }
 }

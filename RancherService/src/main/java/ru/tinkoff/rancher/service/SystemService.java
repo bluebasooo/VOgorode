@@ -1,6 +1,9 @@
 package ru.tinkoff.rancher.service;
 
 import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -9,7 +12,19 @@ import java.util.Map;
 
 @Service
 public class SystemService {
-    ManagedChannel channel;
+    private final ManagedChannel channel;
+
+    /**
+     * Constructor to get channel to server
+     * @param port - server port
+     */
+    @Autowired
+    public SystemService(@Value("${grpc.server.port}") int port) {
+        this.channel = ManagedChannelBuilder
+                .forAddress("localhost",port)
+                .usePlaintext()
+                .build();
+    }
 
     /**
      * @return status of server
