@@ -39,7 +39,6 @@ dependencies {
 	implementation("io.grpc:grpc-protobuf:1.53.0")
 	implementation("io.grpc:grpc-stub:1.53.0")
 	implementation("net.devh:grpc-client-spring-boot-starter:2.14.0.RELEASE")
-	testImplementation("org.mockito:mockito-all")
 	if (JavaVersion.current().isJava9Compatible()) {
 		implementation("javax.annotation:javax.annotation-api:1.3.2")
 	}
