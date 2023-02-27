@@ -1,5 +1,5 @@
 package ru.tinkoff.handyman;
 
-class HandymanServiceTests {
+class HandymanApplicationTests {
 
 }
