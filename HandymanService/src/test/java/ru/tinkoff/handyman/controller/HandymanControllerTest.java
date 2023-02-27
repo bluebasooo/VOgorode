@@ -39,7 +39,7 @@ class HandymanControllerTest {
 
         //THEN
         result.andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("Handyman").value("OK"));
+                .andExpect(MockMvcResultMatchers.jsonPath("HandymanService").value("IDLE"));
 
     }
 
