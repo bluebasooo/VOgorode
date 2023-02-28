@@ -33,6 +33,10 @@ public class HandymanController {
         return systemService.getServerStatus();
     }
 
+    /**
+     * End point to change status of server manually to "Malfunction"
+     * @param isMalfunction - param to change state of server
+     */
     @GetMapping("/force/malfunction")
     public void forceMalfunction(@RequestParam boolean isMalfunction) {
         systemService.forceMalfunction(isMalfunction);

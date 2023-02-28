@@ -24,14 +24,12 @@ repositories {
 extra["testcontainersVersion"] = "1.17.6"
 
 dependencies {
+	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-web")
-	compileOnly("org.projectlombok:lombok")
 	implementation("io.micrometer:micrometer-registry-prometheus:1.10.4")
+	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.testcontainers:junit-jupiter")
-	implementation("org.springframework.boot:spring-boot-starter")
 
 	implementation("com.google.protobuf:protobuf-java:3.22.0")
 	runtimeOnly("com.google.protobuf:protobuf-java-util:3.22.0")
@@ -42,6 +40,10 @@ dependencies {
 	if (JavaVersion.current().isJava9Compatible()) {
 		implementation("javax.annotation:javax.annotation-api:1.3.2")
 	}
+
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.testcontainers:junit-jupiter")
+	testImplementation("io.grpc:grpc-testing:1.53.0")
 
 }
 

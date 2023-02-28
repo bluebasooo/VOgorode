@@ -52,7 +52,7 @@ class StatusServiceImplTest {
     void getReadiness() {
         //GIVEN
         ReadinessResponse serverStatus = ReadinessResponse.newBuilder()
-                .setStatus("<200 OK OK,[]>")
+                .setStatus("IDLE")
                 .build();
 
         //WHEN
