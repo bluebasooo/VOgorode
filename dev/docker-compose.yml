@@ -1,0 +1,61 @@
+version: "3.8"
+
+services:
+  handyman-service:
+    build: ../HandymanService
+    expose:
+      - 80
+      - 9000
+    ports:
+      - 80:80
+    networks:
+      - default
+  landscape-service:
+    build: ../LandscapeService
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+    networks:
+      - default
+  rancher-service:
+    build: ../RancherService
+    expose:
+      - 8000
+      - 9090
+    ports:
+      - 8000:8000
+    networks:
+      - default
+  postgres:
+    image: postgres:latest
+    expose:
+      - 5432
+    networks:
+      - default
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=postgres
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus:/etc/prometheus
+    ports:
+      - 9090:9090
+  grafana:
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+
+
+
+networks:
+  default:
+    driver: bridge
+

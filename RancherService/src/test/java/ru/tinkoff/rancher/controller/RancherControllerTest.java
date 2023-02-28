@@ -39,7 +39,32 @@ class RancherControllerTest {
 
         //THEN
         result.andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("RancherService").value("IDLE"));
+                .andExpect(MockMvcResultMatchers.jsonPath("RancherService").value("CONNECTING"));
 
     }
+
+    @Test
+    public void testForceMalfuncitonWithTrueState() throws Exception {
+        //GIVEN
+        mockMvc.perform(get("/system/force/malfunction?isMalfunction=true"));
+
+        //WHEN
+        var result = mockMvc.perform(get("/system/readiness"));
+
+        //THEN
+        result.andExpect(MockMvcResultMatchers.jsonPath("RancherService").value("Malfunction"));
+    }
+
+    @Test
+    public void testForceMalfunctionWithFalseState() throws Exception {
+        //GIVEN
+        mockMvc.perform(get("/system/force/malfunction?isMalfunction=false"));
+
+        //WHEN
+        var result = mockMvc.perform(get("/system/readiness"));
+
+        //THEN
+        result.andExpect(MockMvcResultMatchers.jsonPath("RancherService").value("IDLE"));
+    }
+
 }

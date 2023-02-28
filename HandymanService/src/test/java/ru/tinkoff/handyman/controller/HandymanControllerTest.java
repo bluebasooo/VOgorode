@@ -39,8 +39,32 @@ class HandymanControllerTest {
 
         //THEN
         result.andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("HandymanService").value("IDLE"));
+                .andExpect(MockMvcResultMatchers.jsonPath("HandymanService").value("CONNECTING"));
 
+    }
+
+    @Test
+    public void testForceMalfuncitonWithTrueState() throws Exception {
+        //GIVEN
+        mockMvc.perform(get("/system/force/malfunction?isMalfunction=true"));
+
+        //WHEN
+        var result = mockMvc.perform(get("/system/readiness"));
+
+        //THEN
+        result.andExpect(MockMvcResultMatchers.jsonPath("HandymanService").value("Malfunction"));
+    }
+
+    @Test
+    public void testForceMalfunctionWithFalseState() throws Exception {
+        //GIVEN
+        mockMvc.perform(get("/system/force/malfunction?isMalfunction=false"));
+
+        //WHEN
+        var result = mockMvc.perform(get("/system/readiness"));
+
+        //THEN
+        result.andExpect(MockMvcResultMatchers.jsonPath("HandymanService").value("IDLE"));
     }
 
 }
