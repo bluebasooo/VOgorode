@@ -1,5 +1,6 @@
 package ru.tinkoff.rancher.controller;
 
+
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import java.util.Map;
 @RequestMapping("/system")
 @AllArgsConstructor
 public class RancherController {
+
 
     private SystemService systemService;
 
@@ -28,6 +30,7 @@ public class RancherController {
      * @return status and name of service
      */
     @GetMapping("/readiness")
+
     public Map.Entry<String,String> getServerStatus() {
         return systemService.getServerStatus();
     }
