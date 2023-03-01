@@ -47,7 +47,7 @@ public class SystemService {
      * @return name and status of server
      */
     public Map.Entry<String,String> getServerStatus() {
-        return Map.entry("RancherService", isMalfunction ? "Malfunction" : channel.getState(true).toString());
+        return Map.entry(properties.getName(), isMalfunction ? "Malfunction" : channel.getState(true).toString());
     }
 
     /**
