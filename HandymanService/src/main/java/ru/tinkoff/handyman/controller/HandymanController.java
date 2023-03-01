@@ -1,5 +1,7 @@
 package ru.tinkoff.handyman.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.info.BuildProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("/system")
 public class HandymanController {
+
+    @Autowired
+    private BuildProperties properties;
 
     /**
      * @return status of server
@@ -25,6 +30,6 @@ public class HandymanController {
      */
     @GetMapping("/readiness")
     public Map<String,HttpStatus> getServerStatus() {
-        return Map.of("HandymanService", HttpStatus.OK);
+        return Map.of(properties.getName(), HttpStatus.OK);
     }
 }
