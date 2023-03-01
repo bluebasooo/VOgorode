@@ -4,6 +4,7 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.info.BuildProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,9 @@ import java.util.Map;
 @Service
 public class SystemService {
     private final ManagedChannel channel;
+
+    @Autowired
+    private BuildProperties properties;
 
     /**
      * Constructor to get channel to server
@@ -37,6 +41,6 @@ public class SystemService {
      * @return name and status of server
      */
     public Map.Entry<String,String> getServerStatus() {
-        return Map.entry("RancherService", channel.getState(true).toString());
+        return Map.entry(properties.getName(), channel.getState(true).toString());
     }
 }
