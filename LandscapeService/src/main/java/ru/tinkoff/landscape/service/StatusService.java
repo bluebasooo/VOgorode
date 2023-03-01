@@ -5,7 +5,7 @@ import io.grpc.ManagedChannelBuilder;
 import lombok.AllArgsConstructor;
 import net.devh.boot.grpc.client.config.GrpcChannelsProperties;
 import org.springframework.stereotype.Service;
-import ru.tinkoff.landscape.dto.ServerDto;
+import ru.tinkoff.landscape.response.ServerStateResponse;
 import ru.tinkoff.proto.ReadinessResponse;
 import ru.tinkoff.proto.StatusServiceGrpc;
 import ru.tinkoff.proto.VersionResponse;
@@ -42,11 +42,11 @@ public class StatusService {
      * @param address - host and port of server
      * @return ServerDTO - class which represent data about server
      */
-    private ServerDto responseMapping(StatusServiceGrpc.StatusServiceBlockingStub serviceBlockingStub, String address) {
+    private ServerStateResponse responseMapping(StatusServiceGrpc.StatusServiceBlockingStub serviceBlockingStub, String address) {
         VersionResponse versionResponse = getVersion(serviceBlockingStub);
         ReadinessResponse readinessResponse = getReadiness(serviceBlockingStub);
 
-        return ServerDto.builder()
+        return ServerStateResponse.builder()
                 .host(address)
                 .status(readinessResponse.getStatus().toString())
                 .artifact(versionResponse.getArtifact())
@@ -83,17 +83,17 @@ public class StatusService {
      * @param stubs - instances of stubs servers
      * @return - info about services
      */
-    private Map<String, List<ServerDto>> getAllConnections(Map<String, StatusServiceGrpc.StatusServiceBlockingStub> stubs) {
+    private Map<String, List<ServerStateResponse>> getAllConnections(Map<String, StatusServiceGrpc.StatusServiceBlockingStub> stubs) {
         return stubs.entrySet().stream()
                 .map(strub -> responseMapping(strub.getValue(),strub.getKey()))
-                .collect(Collectors.groupingBy(ServerDto::getName));
+                .collect(Collectors.groupingBy(ServerStateResponse::getName));
 
     }
 
     /**
      * @return - info about services
      */
-    public Map<String, List<ServerDto>> getConnections() {
+    public Map<String, List<ServerStateResponse>> getConnections() {
         return getAllConnections(getStubs(getChannels()));
     }
 }

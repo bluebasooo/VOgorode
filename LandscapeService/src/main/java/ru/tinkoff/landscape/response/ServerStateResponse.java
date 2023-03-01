@@ -1,11 +1,11 @@
-package ru.tinkoff.landscape.dto;
+package ru.tinkoff.landscape.response;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class ServerDto {
+public class ServerStateResponse {
     private String host;
     private String status;
     private String artifact;

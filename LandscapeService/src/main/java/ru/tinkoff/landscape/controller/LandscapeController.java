@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.tinkoff.landscape.dto.ServerDto;
+import ru.tinkoff.landscape.response.ServerStateResponse;
 import ru.tinkoff.landscape.service.StatusService;
 import ru.tinkoff.landscape.service.SystemService;
 
@@ -41,7 +41,7 @@ public class LandscapeController {
      * @return information about gRPC servers
      */
     @GetMapping("/connections")
-    public Map<String, List<ServerDto>> getConnections() {
+    public Map<String, List<ServerStateResponse>> getConnections() {
         return statusService.getConnections();
     }
 
