@@ -87,3 +87,4 @@ tasks.withType<Test> {
 springBoot {
 	buildInfo()
 }
+
