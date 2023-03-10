@@ -37,10 +37,10 @@ public class StatusService {
     }
 
     /**
-     * Do mapping of the response on a ServerDTO
+     * Do mapping of the response on a ServerStateResponse
      * @param serviceBlockingStub - stub to connect to server
      * @param address - host and port of server
-     * @return ServerDTO - class which represent data about server
+     * @return ServerStateResponse - class which represent data about server
      */
     private ServerStateResponse responseMapping(StatusServiceGrpc.StatusServiceBlockingStub serviceBlockingStub, String address) {
         VersionResponse versionResponse = getVersion(serviceBlockingStub);
