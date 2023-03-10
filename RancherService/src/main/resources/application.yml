@@ -11,6 +11,14 @@ management:
 server:
   port: 8000
 
+spring:
+  datasource:
+    url: "jdbc:postgresql://postgres:5432/postgres?currentSchema=public"
+    username: "postgres"
+    password: "123"
+    jpa:
+      show-sql: true
+
 grpc:
   server:
     port: 9090
