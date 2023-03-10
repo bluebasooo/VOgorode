@@ -11,3 +11,18 @@ management:
 server:
   port: 8080
 
+spring:
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+
+grpc:
+  client:
+    handymanStatusService:
+      address: localhost:9000
+      negotiation-type: plaintext
+    rancherStatusService:
+      address: localhost:9090
+      negotiation-type: plaintext
+
+

@@ -11,3 +11,7 @@ management:
 server:
   port: 8000
 
+grpc:
+  server:
+    port: 9090
+    permit-keep-alive-without-calls: true
