@@ -30,7 +30,6 @@ public class RancherController {
      * @return status and name of service
      */
     @GetMapping("/readiness")
-
     public Map.Entry<String,String> getServerStatus() {
         return systemService.getServerStatus();
     }
