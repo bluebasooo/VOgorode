@@ -1,6 +1,11 @@
-FROM openjdk:17
-COPY build/libs/*.jar Handyman.jar
-CMD ["java","-jar","/Handyman.jar"]
+FROM amazoncorretto:17
+
+WORKDIR /app
+
+COPY . ./
+
+RUN ./gradlew bootJar
+RUN cd build/libs && java -jar HandymanService*.jar
 
 
 
