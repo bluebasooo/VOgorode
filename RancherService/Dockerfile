@@ -1,6 +1,11 @@
-FROM openjdk:17
-COPY build/libs/*.jar Rancher.jar
-CMD ["java","-jar","/Rancher.jar"]
+FROM amazoncorretto:17
+
+WORKDIR /app
+
+COPY . ./
+
+RUN ./gradlew bootJar
+RUN cd build/libs && java -jar RancherService*.jar
 
 
 
