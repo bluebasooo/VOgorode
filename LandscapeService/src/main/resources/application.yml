@@ -12,6 +12,8 @@ server:
   port: 8080
 
 spring:
+  liquibase:
+    enabled: true
   jackson:
     serialization:
       fail-on-empty-beans: false
@@ -19,8 +21,6 @@ spring:
     url: "jdbc:postgresql://postgres:5432/postgres?currentSchema=public"
     username: "postgres"
     password: "123"
-    jpa:
-      show-sql: true
 
 
 

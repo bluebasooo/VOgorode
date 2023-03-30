@@ -41,6 +41,8 @@ dependencies {
 		implementation("javax.annotation:javax.annotation-api:1.3.2")
 	}
 
+	implementation("org.liquibase:liquibase-core")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	runtimeOnly("org.postgresql:postgresql")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")

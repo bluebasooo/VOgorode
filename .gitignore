@@ -1,2 +1,7 @@
-/dev/postgres-data/
 /.idea/
+/LandscapeService/src/main/resources/db/changelog/docker-compose.yml
+/LandscapeService/src/main/resources/db/changelog/stabina.sql
+/LandscapeService/src/main/resources/db/changelog/postgres-data/
+/LandscapeService/docker-compose.yml
+/LandscapeService/postgres-data/
+/LandscapeService/src/main/resources/db/changelog/stabina2.sql
