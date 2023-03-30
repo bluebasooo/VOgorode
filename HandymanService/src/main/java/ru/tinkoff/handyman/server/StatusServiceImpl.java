@@ -44,10 +44,10 @@ public class StatusServiceImpl extends StatusServiceGrpc.StatusServiceImplBase {
      */
     @Override
     public void getReadiness(Empty request, StreamObserver<ReadinessResponse> responseObserver) {
-        String currentStatus = handymanController.getStatus().toString();
+        var currentStatus = handymanController.getServerStatus();
 
         ReadinessResponse response = ReadinessResponse.newBuilder()
-                .setStatus(currentStatus)
+                .setStatus(currentStatus.getValue())
                 .build();
 
         responseObserver.onNext(response);

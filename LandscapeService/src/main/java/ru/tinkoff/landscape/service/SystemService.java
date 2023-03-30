@@ -1,6 +1,5 @@
 package ru.tinkoff.landscape.service;
 
-import io.grpc.ManagedChannel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.info.BuildProperties;
 import org.springframework.http.HttpStatus;

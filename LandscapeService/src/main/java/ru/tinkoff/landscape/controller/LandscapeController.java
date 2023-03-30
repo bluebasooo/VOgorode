@@ -1,6 +1,5 @@
 package ru.tinkoff.landscape.controller;
 
-
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +17,6 @@ import java.util.Map;
 @RequestMapping("/system")
 public class LandscapeController {
 
-
     private StatusService statusService;
     private SystemService systemService;
 
@@ -34,7 +32,6 @@ public class LandscapeController {
      * @return status and name of service
      */
     @GetMapping("/readiness")
-
     public Map.Entry<String,String> getServerStatus() {
         return systemService.getServerStatus();
     }
@@ -46,7 +43,6 @@ public class LandscapeController {
     @GetMapping("/connections")
     public Map<String, List<ServerStateResponse>> getConnections() {
         return statusService.getConnections();
-
     }
 
 }
