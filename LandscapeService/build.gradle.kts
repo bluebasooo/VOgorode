@@ -41,6 +41,9 @@ dependencies {
 		implementation("javax.annotation:javax.annotation-api:1.3.2")
 	}
 
+	runtimeOnly("org.postgresql:postgresql")
+
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.testcontainers:junit-jupiter")
 	testImplementation("io.grpc:grpc-testing:1.53.0")
