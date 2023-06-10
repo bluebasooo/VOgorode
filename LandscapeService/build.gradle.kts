@@ -27,9 +27,11 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("io.micrometer:micrometer-registry-prometheus:1.10.4")
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
+	implementation("org.modelmapper:modelmapper:3.1.1")
 
 	implementation("com.google.protobuf:protobuf-java:3.22.0")
 	runtimeOnly("com.google.protobuf:protobuf-java-util:3.22.0")
@@ -44,11 +46,15 @@ dependencies {
 	implementation("org.liquibase:liquibase-core")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	runtimeOnly("org.postgresql:postgresql")
+	implementation("org.postgresql:postgresql:42.6.0")
 
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testCompileOnly("org.junit.jupiter:junit-jupiter:5.6.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.testcontainers:junit-jupiter")
+	testImplementation("org.testcontainers:postgresql:1.18.0")
 	testImplementation("io.grpc:grpc-testing:1.53.0")
+	implementation("org.hamcrest:hamcrest-all:1.3")
+	implementation("io.rest-assured:rest-assured:3.3.0")
 
 }
 

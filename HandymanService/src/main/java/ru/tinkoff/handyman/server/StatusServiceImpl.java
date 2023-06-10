@@ -5,7 +5,7 @@ import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.info.BuildProperties;
-import ru.tinkoff.handyman.controller.HandymanController;
+import ru.tinkoff.handyman.controller.SystemController;
 import ru.tinkoff.proto.ReadinessResponse;
 import ru.tinkoff.proto.StatusServiceGrpc;
 import ru.tinkoff.proto.VersionResponse;
@@ -17,7 +17,7 @@ public class StatusServiceImpl extends StatusServiceGrpc.StatusServiceImplBase {
     private BuildProperties properties;
 
     @Autowired
-    private HandymanController handymanController;
+    private SystemController handymanController;
 
     /**
      * Method which requests version from server

@@ -1,46 +1,95 @@
 package ru.tinkoff.handyman.controller;
 
-import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import ru.tinkoff.handyman.service.SystemService;
 
-import java.util.Map;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+import ru.tinkoff.handyman.dto.WorksDto;
+import ru.tinkoff.handyman.dto.request.CreatingHandymanDto;
+import ru.tinkoff.handyman.dto.response.ExtendedHandymanResponseDto;
+import ru.tinkoff.handyman.dto.response.HandymanResponseDto;
+import ru.tinkoff.handyman.model.Handyman;
+import ru.tinkoff.handyman.service.HandymanService;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
-@RequestMapping("/system")
 @AllArgsConstructor
+@RequestMapping("/handyman")
 public class HandymanController {
 
-    private SystemService systemService;
+    private final HandymanService handymanService;
 
     /**
-     * @return status of server
+     *
+     * @param userId - id of the user in landscape service
+     * @return handyman with extended data from landscape service
      */
-    @GetMapping("/liveness")
-    public ResponseEntity getStatus() {
-        return systemService.getStatus();
+    @GetMapping("/getById/{userId}")
+    public ExtendedHandymanResponseDto getById(@PathVariable UUID userId) {
+        return handymanService.getHandymanById(userId);
     }
 
     /**
-     * @return status and name of service
+     *
+     * @return all handyman from repository
      */
-    @GetMapping("/readiness")
-    public Map.Entry<String,String> getServerStatus() {
-        return systemService.getServerStatus();
+    @GetMapping("/all")
+    public List<Handyman> getAll() {
+        return handymanService.getAllHandyman();
+    }
+
+
+    /**
+     *
+     * @param creatingHandymanDto - DTO from request
+     * @return DTO of created handyman with creating account in landscape service
+     */
+    @PostMapping("/create")
+    public HandymanResponseDto createHandyman(@RequestBody CreatingHandymanDto creatingHandymanDto) {
+        return handymanService.createHandyman(creatingHandymanDto);
     }
 
     /**
-     * End point to change status of server manually to "Malfunction"
-     * @param isMalfunction - param to change state of server
+     *
+     * @param userId - id of user in landscape service
+     * @param handymanResponseDto - DTO from request
+     * @return - DTO of updated handyman without extended data from landscape service
      */
-    @GetMapping("/force/malfunction")
-    public void forceMalfunction(@RequestParam boolean isMalfunction) {
-        systemService.forceMalfunction(isMalfunction);
+    @PostMapping("/updateById/{userId}")
+    public HandymanResponseDto updateById(@PathVariable UUID userId, @RequestBody HandymanResponseDto handymanResponseDto) {
+        return handymanService.updateHandymanById(userId, handymanResponseDto);
     }
 
+    /**
+     *
+     * @param userId
+     * @param worksDto
+     * @return
+     */
+    @PostMapping("/addWorkById/{userId}")
+    public HandymanResponseDto addWorkById(@PathVariable UUID userId, @RequestBody WorksDto worksDto) {
+        return handymanService.addHandymanWork(userId, worksDto);
+    }
+
+    /**
+     *
+     * @param userId - id of user in landscape service
+     * @return - DTO of deleted user with extended data from landscape service
+     */
+    @DeleteMapping("/deleteById/{userId}")
+    public ExtendedHandymanResponseDto deleteById(@PathVariable UUID userId) {
+        return handymanService.deleteHandymanById(userId);
+    }
+
+    /**
+     *
+     * @param id - id of user in landscape service
+     * @return - handyman entity from HandymanRepository
+     */
+    @GetMapping("/getFromRepo/{id}")
+    public Handyman getFromRepo(@PathVariable UUID id) {
+        return handymanService.getHandymanFromRepository(id);
+    }
 
 }
