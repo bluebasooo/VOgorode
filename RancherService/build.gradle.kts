@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "ru.tinkoff"
-version = "0.5.0"
+version = "0.6.0"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 configurations {
@@ -28,8 +28,10 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("io.micrometer:micrometer-registry-prometheus:1.10.4")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
+	implementation("org.modelmapper:modelmapper:3.1.1")
 
 	implementation("com.google.protobuf:protobuf-java:3.22.0")
 	runtimeOnly("com.google.protobuf:protobuf-java-util:3.22.0")
@@ -42,11 +44,22 @@ dependencies {
 		implementation("javax.annotation:javax.annotation-api:1.3.2")
 	}
 
-	runtimeOnly("org.postgresql:postgresql")
+	implementation("org.liquibase:liquibase-core:4.20.0")
+	implementation("org.liquibase.ext:liquibase-mongodb:4.20.0")
+	implementation("org.mongodb:bson:4.9.0")
+	implementation("org.mongodb:mongodb-driver-core:4.9.0")
+	implementation("org.mongodb:mongodb-driver-sync:4.9.0")
+	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
 
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	implementation("org.springframework.cloud:spring-cloud-starter-openfeign:3.1.7")
+	
+	testCompileOnly("org.junit.jupiter:junit-jupiter:5.6.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.testcontainers:junit-jupiter")
+	testImplementation("org.testcontainers:mongodb:1.18.3")
+	testImplementation("com.github.tomakehurst:wiremock-standalone:2.27.2")
+	implementation("org.hamcrest:hamcrest-all:1.3")
+	implementation("io.rest-assured:rest-assured:3.3.0")
 	testImplementation("io.grpc:grpc-testing:1.53.0")
 
 }

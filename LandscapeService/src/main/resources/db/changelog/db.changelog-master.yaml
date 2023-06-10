@@ -5,3 +5,7 @@ databaseChangeLog:
       file: db/changelog/changeset/2023-03-14--05-add-user-type.sql
   - include:
       file: db/changelog/changeset/2023-03-14--06-procedure-insert-user-type.sql
+  - include:
+      file: db/changelog/changeset/2023-04-17--adding-changes-to-user-table.sql
+  - include:
+      file: db/changelog/changeset/2023-04-17--create-location-table.sql

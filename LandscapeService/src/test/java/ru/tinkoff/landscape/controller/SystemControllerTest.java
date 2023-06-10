@@ -1,4 +1,4 @@
-package ru.tinkoff.rancher.controller;
+package ru.tinkoff.landscape.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +12,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class RancherControllerTest {
+class SystemControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+
 
     @Test
     public void livenessOfService() throws Exception {
@@ -39,32 +41,9 @@ class RancherControllerTest {
 
         //THEN
         result.andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("RancherService").value("CONNECTING"));
+                .andExpect(MockMvcResultMatchers.jsonPath("LandscapeService").value("OK"));
 
     }
 
-    @Test
-    public void testForceMalfuncitonWithTrueState() throws Exception {
-        //GIVEN
-        mockMvc.perform(get("/system/force/malfunction?isMalfunction=true"));
-
-        //WHEN
-        var result = mockMvc.perform(get("/system/readiness"));
-
-        //THEN
-        result.andExpect(MockMvcResultMatchers.jsonPath("RancherService").value("Malfunction"));
-    }
-
-    @Test
-    public void testForceMalfunctionWithFalseState() throws Exception {
-        //GIVEN
-        mockMvc.perform(get("/system/force/malfunction?isMalfunction=false"));
-
-        //WHEN
-        var result = mockMvc.perform(get("/system/readiness"));
-
-        //THEN
-        result.andExpect(MockMvcResultMatchers.jsonPath("RancherService").value("IDLE"));
-    }
 
 }

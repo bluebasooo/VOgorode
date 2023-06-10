@@ -11,6 +11,5 @@ create table if not exists users (
     user_type varchar(10) not null,
     creates timestamp not null,
     updates timestamp not null,
-
     primary key (id)
 );

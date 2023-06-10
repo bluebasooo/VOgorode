@@ -1,9 +1,6 @@
 --liquibase formatted sql
 
 --changeset bluebasooo:3
-alter table users add column users_type_id smallint;
-create index on users(login,id) where users.users_type_id is null;
-
 create or replace procedure insert_user_type_id(page integer, time_stop integer)
 as '
 begin
@@ -36,6 +33,3 @@ begin
         end loop;
 end;
 ' language plpgsql;
-
--- call insert_user_type_id(100, 2);
--- alter table users drop column if exists user_type;

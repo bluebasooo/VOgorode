@@ -1,45 +1,94 @@
 package ru.tinkoff.rancher.controller;
 
-import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import ru.tinkoff.rancher.service.SystemService;
 
-import java.util.Map;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+import ru.tinkoff.rancher.dto.WorksDto;
+import ru.tinkoff.rancher.dto.request.CreatingRancherDto;
+import ru.tinkoff.rancher.dto.response.ExtendedRancherResponseDto;
+import ru.tinkoff.rancher.dto.response.RancherResponseDto;
+import ru.tinkoff.rancher.model.Rancher;
+import ru.tinkoff.rancher.service.RancherService;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
-@RequestMapping("/system")
 @AllArgsConstructor
+@RequestMapping("/rancher")
 public class RancherController {
 
-    private SystemService systemService;
+    private final RancherService rancherService;
 
     /**
-     * @return status of server
+     *
+     * @param userId - id of user in landscape service
+     * @return - DTO of rancher with extended data from landscape service
      */
-    @GetMapping("/liveness")
-    public ResponseEntity getStatus() {
-        return systemService.getStatus();
+    @GetMapping("/getById/{userId}")
+    public ExtendedRancherResponseDto getById(@PathVariable UUID userId) {
+        return rancherService.getRancherById(userId);
     }
 
     /**
-     * @return status and name of service
+     *
+     * @return all rancher from repository
      */
-    @GetMapping("/readiness")
-    public Map.Entry<String,String> getServerStatus() {
-        return systemService.getServerStatus();
+    @GetMapping("/all")
+    public List<Rancher> getAll() {
+        return rancherService.getAllRancher();
     }
 
     /**
-     * End point to change status of server manually to "Malfunction"
-     * @param isMalfunction - param to change state of server
+     *
+     * @param creatingRancherDto - DTO with data to creating rancher
+     * @return - DTO with data about created rancher
      */
-    @GetMapping("/force/malfunction")
-    public void forceMalfunction(@RequestParam boolean isMalfunction) {
-        systemService.forceMalfunction(isMalfunction);
+    @PostMapping("/create")
+    public RancherResponseDto createRancher(@RequestBody CreatingRancherDto creatingRancherDto) {
+        return rancherService.createRancher(creatingRancherDto);
+    }
+
+    /**
+     *
+     * @param userId - id of user in landscape service
+     * @param rancherResponseDto - DTO with data to update rancher
+     * @return - DTO with data about updated rancher
+     */
+    @PostMapping("/updateById/{userId}")
+    public RancherResponseDto updateById(@PathVariable UUID userId, @RequestBody RancherResponseDto rancherResponseDto) {
+        return rancherService.updateRancherById(userId, rancherResponseDto);
+    }
+
+    /**
+     *
+     * @param userId - id of user in landscape service
+     * @param worksDto
+     * @return
+     */
+    @PostMapping("/addWorkById/{userId}")
+    public RancherResponseDto addWorkById(@PathVariable UUID userId, @RequestBody WorksDto worksDto) {
+        return rancherService.addRancherWork(userId, worksDto);
+    }
+
+    /**
+     *
+     * @param userId - id of user in landscape service
+     * @return - DTO about deleted rancher with extended data about user from landscape service
+     */
+    @DeleteMapping("/deleteById/{userId}")
+    public ExtendedRancherResponseDto deleteById(@PathVariable UUID userId) {
+        return rancherService.deleteRancherById(userId);
+    }
+
+    /**
+     *
+     * @param id - id of user in landscape service
+     * @return - rancher entity from RancherRepository
+     */
+    @GetMapping("/getFromRepo/{id}")
+    public Rancher getFromRepo(@PathVariable UUID id) {
+        return rancherService.getRancherFromRepository(id);
     }
 
 }

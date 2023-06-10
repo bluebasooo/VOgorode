@@ -10,3 +10,5 @@ insert into users_type(id, type) values
 (1, 'handyman'),
 (2, 'rancher');
 
+alter table users add column users_type_id smallint;
+create index on users(login,id) where users.users_type_id is null;

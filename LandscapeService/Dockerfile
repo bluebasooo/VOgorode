@@ -1,12 +1,4 @@
-FROM amazoncorretto:17
-
+FROM amazoncorretto:17-alpine-jdk
 WORKDIR /app
-
-COPY . ./
-
-RUN ./gradlew bootJar
-RUN cd build/libs && java -jar LandscapeService*.jar
-
-
-
-
+COPY ./build/libs/*.jar ./app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]

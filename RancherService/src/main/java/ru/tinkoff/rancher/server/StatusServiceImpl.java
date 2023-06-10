@@ -5,7 +5,7 @@ import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.info.BuildProperties;
-import ru.tinkoff.rancher.controller.RancherController;
+import ru.tinkoff.rancher.controller.SystemController;
 import ru.tinkoff.proto.ReadinessResponse;
 import ru.tinkoff.proto.StatusServiceGrpc;
 import ru.tinkoff.proto.VersionResponse;
@@ -17,7 +17,7 @@ public class StatusServiceImpl extends StatusServiceGrpc.StatusServiceImplBase {
     private BuildProperties properties;
 
     @Autowired
-    private RancherController rancherController;
+    private SystemController systemController;
 
     /**
      * Method which requests version from server
@@ -44,7 +44,7 @@ public class StatusServiceImpl extends StatusServiceGrpc.StatusServiceImplBase {
      */
     @Override
     public void getReadiness(Empty request,StreamObserver<ReadinessResponse> responseObserver) {
-        var currentStatus = rancherController.getServerStatus();
+        var currentStatus = systemController.getServerStatus();
 
         ReadinessResponse response = ReadinessResponse.newBuilder()
                 .setStatus(currentStatus.getValue())

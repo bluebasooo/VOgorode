@@ -3,42 +3,91 @@ version: "3.8"
 services:
 
   handyman-service:
+    container_name: handyman-service
     build: ../HandymanService
     expose:
       - 80
       - 9000
     ports:
       - 80:80
+    environment:
+      - MDB_HOST=mongodb-h
+      - MDB_PORT=27017
+      - MDB_USERNAME=mongo
+      - MDB_PASSWORD=123
+      - MDB_NAME=handyman
+      - LANDSCAPE_HOST=landscape-service
+      - LANDSCAPE_PORT=8080
     networks:
       - default
     depends_on:
       - postgres
       - prometheus
   landscape-service:
+    container_name: landscape-service
     build: ../LandscapeService
     expose:
       - 8080
     ports:
       - 8080:8080
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=123
+      - DB_NAME=postgres
     networks:
       - default
     depends_on:
       - postgres
       - prometheus
   rancher-service:
+    container_name: rancher-service
     build: ../RancherService
     expose:
       - 8000
       - 9090
     ports:
       - 8000:8000
+    environment:
+      - MDB_HOST=mongodb-r
+      - MDB_PORT=27018
+      - MDB_USERNAME=mongo
+      - MDB_PASSWORD=123
+      - MDB_NAME=rancher
     networks:
       - default
     depends_on:
       - postgres
       - prometheus
 
+  mongodb-h:
+    container_name: mongodb-h
+    image: mongo
+    expose:
+      - 27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongo
+      - MONGO_INITDB_ROOT_PASSWORD=123
+      - MONGO_INITDB_DATABASE=handyman
+    ports:
+      - 27017:27017
+
+  mongodb-r:
+    container_name: mongodb-r
+    image: mongo
+    expose:
+      - 27018
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongo
+      - MONGO_INITDB_ROOT_PASSWORD=123
+      - MONGO_INITDB_DATABASE=rancher
+    command: mongod --port 27018
+    ports:
+      - 27018:27018
+
   postgres:
+    container_name: postgres
     image: postgres:latest
     expose:
       - 5432
@@ -49,15 +98,20 @@ services:
       - POSTGRES_PASSWORD=123
       - POSTGRES_DB=postgres
       - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - 5432:5432
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
+
   prometheus:
+    container_name: prometheus
     image: prom/prometheus
     volumes:
       - ./prometheus:/etc/prometheus
     ports:
       - 9090:9090
   grafana:
+    container_name: grafane
     image: grafana/grafana
     ports:
       - 3000:3000
