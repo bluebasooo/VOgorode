@@ -28,10 +28,10 @@ spring:
 grpc:
   client:
     handymanStatusService:
-      address: handyman-service:9000
+      address: handyman-service:90
       negotiation-type: plaintext
     rancherStatusService:
-      address: rancher-service:9090
+      address: rancher-service:9000
       negotiation-type: plaintext
 
 

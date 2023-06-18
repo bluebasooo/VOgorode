@@ -63,3 +63,37 @@
 
 ![prometheus](pictures/prometheus_test.png)
 
+---
+
+# Инструкция по поднятию Prometheus + Grafana
+
+### 0. Используем прыдущую инструкцию для сборки проекта
+
+### 1. Запускаем контейнер
+Для начала надо попасть в коренную папку проекта.
+
+Далее запустить контейнеры при помощи команды `docker-compose up`
+```bash
+    cd dev && docker-compose up && cd ..
+```
+
+### 2. Пользуемся
+
+2.0 Посмотрим на метрики - grafana и prometheus:
+- *grafana* - перейдем по *<localhost:3000>*
+
+2.1 Авторизуемся - логин и пароль в файле _docker-compose.yml_ (по умолчанию login: **admin**, password: **admin**)
+
+![grafana](pictures/grafana_login.png)
+
+2.2 После входа идем в Dashboards
+
+![grafana](pictures/grafana_test.png)
+
+2.3 Выбираем понравившийся dashboard
+
+![grafana](pictures/grafana_dashboards.png)
+
+2.4 Наши метрики
+
+![grafana](pictures/grafana_example_dashboard.png)

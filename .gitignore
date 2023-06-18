@@ -7,3 +7,6 @@
 /LandscapeService/src/main/resources/db/changelog/stabina2.sql
 /LandscapeService/src/main/resources/docker-compose.yml
 /LandscapeService/src/main/resources/stabina2.sql
+/dev/postgres-data/
+/dev/prometheus/
+/dev/grafana/

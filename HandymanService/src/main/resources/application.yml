@@ -2,11 +2,19 @@ management:
   endpoints:
     web:
       exposure:
-        include: info, prometheus
+        include: info, prometheus, health
       base-path:
       path-mapping:
         info: /actuator/info
         prometheus: /metrics
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        "[http.server.requests]": true
+
 
 spring:
   data:
@@ -27,5 +35,5 @@ server:
 
 grpc:
   server:
-    port: 9000
+    port: 90
     permit-keep-alive-without-calls: true
