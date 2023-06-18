@@ -1,5 +1,6 @@
 package ru.tinkoff.landscape.controller;
 
+import io.micrometer.core.annotation.Timed;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.tinkoff.landscape.dto.LocationDto;
@@ -20,6 +21,7 @@ public class LocationController {
      * @param userId - id of user
      * @return - DTO with location data
      */
+    @Timed
     @GetMapping("/getByUserId/{userId}")
     public LocationDto getLocationByUserId(@PathVariable UUID userId) {
         return locationService.getLocationByUserId(userId);
@@ -31,6 +33,7 @@ public class LocationController {
      * @param locationDto - DTO with data of location
      * @return - DTO with data of created location
      */
+    @Timed
     @PostMapping("/create/{userId}")
     public LocationDto createLocationById(@PathVariable UUID userId, @RequestBody LocationDto locationDto) {
         return locationService.createLocationById(userId, locationDto);
@@ -42,6 +45,7 @@ public class LocationController {
      * @param locationDto - DTO with data of updating location
      * @return - DTO of updated location
      */
+    @Timed
     @PostMapping("/updateByUserId/{userId}")
     public LocationDto updateLocationById(@PathVariable UUID userId, @RequestBody LocationDto locationDto) {
         return locationService.updateLocationById(userId, locationDto);

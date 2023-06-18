@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "ru.tinkoff"
-version = "0.6.0"
+version = "0.7.0"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 configurations {

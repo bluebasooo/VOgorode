@@ -1,0 +1,16 @@
+scrape_configs:
+  - job_name: 'handyman-monitoring'
+    scrape_interval: 1s
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['handyman-service:80']
+  - job_name: 'landscape-monitoring'
+    scrape_interval: 1s
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['landscape-service:8080']
+  - job_name: 'rancher-monitoring'
+    scrape_interval: 1s
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['rancher-service:8000']

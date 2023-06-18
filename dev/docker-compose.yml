@@ -7,7 +7,7 @@ services:
     build: ../HandymanService
     expose:
       - 80
-      - 9000
+      - 90
     ports:
       - 80:80
     environment:
@@ -21,7 +21,7 @@ services:
     networks:
       - default
     depends_on:
-      - postgres
+      - mongodb-h
       - prometheus
   landscape-service:
     container_name: landscape-service
@@ -55,10 +55,12 @@ services:
       - MDB_USERNAME=mongo
       - MDB_PASSWORD=123
       - MDB_NAME=rancher
+      - LANDSCAPE_HOST=landscape-service
+      - LANDSCAPE_PORT=8080
     networks:
       - default
     depends_on:
-      - postgres
+      - mongodb-r
       - prometheus
 
   mongodb-h:
@@ -107,16 +109,31 @@ services:
     container_name: prometheus
     image: prom/prometheus
     volumes:
-      - ./prometheus:/etc/prometheus
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    networks:
+      - default
     ports:
       - 9090:9090
+
   grafana:
-    container_name: grafane
+    container_name: grafana
     image: grafana/grafana
     ports:
       - 3000:3000
     volumes:
-      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning
+      - ./monitoring/grafana/dashboards:/etc/grafana/dashboards
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
 
 
 

@@ -27,5 +27,5 @@ server:
 
 grpc:
   server:
-    port: 9090
+    port: 9000
     permit-keep-alive-without-calls: true
