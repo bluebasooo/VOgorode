@@ -9,6 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 public class AppError {
     private int statusCode;
+    private String typeError;
     private String message;
 
     private List<Violation> violations;

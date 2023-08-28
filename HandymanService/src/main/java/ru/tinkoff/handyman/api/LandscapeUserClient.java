@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import ru.tinkoff.handyman.dto.request.CreatingUserDto;
+import ru.tinkoff.handyman.dto.request.CreatingUserToLandscapeDto;
 import ru.tinkoff.handyman.dto.request.ExtendedUserDto;
 import ru.tinkoff.handyman.dto.request.UserDto;
 
@@ -20,5 +20,5 @@ public interface LandscapeUserClient {
     ExtendedUserDto getExtendedUserById(@PathVariable UUID id);
 
     @PostMapping("/create")
-    UserDto createUser(@RequestBody CreatingUserDto userDto);
+    UserDto createUser(@RequestBody CreatingUserToLandscapeDto userDto);
 }

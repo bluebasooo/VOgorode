@@ -46,8 +46,11 @@ dependencies {
 		implementation("javax.annotation:javax.annotation-api:1.3.2")
 	}
 
-	implementation("org.liquibase:liquibase-core:4.20.0")
-	implementation("org.liquibase.ext:liquibase-mongodb:4.20.0")
+	implementation("org.liquibase:liquibase-core")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("io.hypersistence:hypersistence-utils-hibernate-55:3.5.0")
+	runtimeOnly("org.postgresql:postgresql")
+	implementation("org.postgresql:postgresql:42.6.0")
 	implementation("org.mongodb:bson:4.9.0")
 	implementation("org.mongodb:mongodb-driver-core:4.9.0")
 	implementation("org.mongodb:mongodb-driver-sync:4.9.0")
@@ -59,6 +62,7 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.testcontainers:junit-jupiter")
 	testImplementation("org.testcontainers:mongodb:1.18.3")
+	testImplementation("org.testcontainers:postgresql:1.18.0")
 	testImplementation("com.github.tomakehurst:wiremock-standalone:2.27.2")
 	implementation("org.hamcrest:hamcrest-all:1.3")
 	implementation("io.rest-assured:rest-assured:3.3.0")

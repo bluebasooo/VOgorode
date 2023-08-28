@@ -66,10 +66,10 @@ public class HandymanService {
      * @return - DTO of created handyman with data from landscape service
      */
     public HandymanResponseDto createHandyman(CreatingHandymanDto creatingHandymanDto) {
-        CreatingUserDto creatingUserDto = mapper.map(creatingHandymanDto, CreatingUserDto.class);
-        creatingUserDto.setUserTypeId(1);
+        CreatingUserToLandscapeDto creatingUserToLandscapeDto = mapper.map(creatingHandymanDto, CreatingUserToLandscapeDto.class);
+        creatingUserToLandscapeDto.setUserTypeId(1);
 
-        UserDto userDto = userClient.createUser(creatingUserDto);
+        UserDto userDto = userClient.createUser(creatingUserToLandscapeDto);
 
         LocationDto locationDto = mapper.map(creatingHandymanDto, LocationDto.class);
 

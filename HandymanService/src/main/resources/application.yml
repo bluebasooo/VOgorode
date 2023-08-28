@@ -16,16 +16,18 @@ management:
         "[http.server.requests]": true
 
 
+#spring:
+#  data:
+#    mongodb:
+#      uri: mongodb://${MDB_USERNAME}:${MDB_PASSWORD}@${MDB_HOST}:${MDB_PORT}/${MDB_NAME}?authSource=admin
+
 spring:
-  data:
-    mongodb:
-      uri: mongodb://${MDB_USERNAME}:${MDB_PASSWORD}@${MDB_HOST}:${MDB_PORT}/${MDB_NAME}?authSource=admin
-#      host: ${MDB_HOST}
-#      port: ${MDB_PORT}
-#      database: ${MDB_NAME}
-#      username: ${MDB_USERNAME}
-#      password: ${MDB_PASSWORD}
-#      authentication-database: admin
+  liquibase:
+    enabled: true
+  datasource:
+    url: "jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}?currentSchema=public"
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
 
 landscape:
   url: http://${LANDSCAPE_HOST}:${LANDSCAPE_PORT}
